@@ -1,0 +1,121 @@
+{
+  "nodes": {
+    "arducopter-bebop": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1688350841,
+        "narHash": "sha256-Q6wzidNO5nQlie7gzGKHwvT0lKovN/19X5ztpOJR1YY=",
+        "ref": "refs/heads/parrot-bebop",
+        "rev": "b3d7ae73cc10dc86bcd1f0ac24d9a58cbcff9dcc",
+        "revCount": 57170,
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/lopsided98/ardupilot"
+      },
+      "original": {
+        "ref": "refs/heads/parrot-bebop",
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/lopsided98/ardupilot"
+      }
+    },
+    "arducopter-beta": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1686180599,
+        "narHash": "sha256-UPwCawA3e/og/NJJp4/L54Q+VZ6wdjfwGtw7Zg0P2+U=",
+        "ref": "refs/tags/ArduCopter-beta",
+        "rev": "07f11531fd2a7ccad05344cce46de3edc6b7c317",
+        "revCount": 57163,
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/ArduPilot/ardupilot"
+      },
+      "original": {
+        "ref": "refs/tags/ArduCopter-beta",
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/ArduPilot/ardupilot"
+      }
+    },
+    "arduplane-stable": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1685496867,
+        "narHash": "sha256-tYsBB9bo50RdM4ozmgRVS5L/yJrNOUxX/FM3LkEHRJ0=",
+        "ref": "refs/tags/ArduPlane-stable",
+        "rev": "2d1a8a28bd00a4e83a9f0e98cd94780273089440",
+        "revCount": 55170,
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/ArduPilot/ardupilot"
+      },
+      "original": {
+        "ref": "refs/tags/ArduPlane-stable",
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/ArduPilot/ardupilot"
+      }
+    },
+    "flake-utils": {
+      "inputs": {
+        "systems": "systems"
+      },
+      "locked": {
+        "lastModified": 1687709756,
+        "narHash": "sha256-Y5wKlQSkgEK2weWdOu4J3riRd+kV/VCgHsqLNTTWQ/0=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "dbabf0ca0c0c4bce6ea5eaf65af5cb694d2082c7",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1688147204,
+        "narHash": "sha256-cyw9nBsWwiRr7dMDff0ssEgQlSsNVZ0+J0TX4uvWviM=",
+        "owner": "lopsided98",
+        "repo": "nixpkgs",
+        "rev": "3cda304ceecfe96647c998bec653a29de451c546",
+        "type": "github"
+      },
+      "original": {
+        "owner": "lopsided98",
+        "ref": "python-cross-musl",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "arducopter-bebop": "arducopter-bebop",
+        "arducopter-beta": "arducopter-beta",
+        "arduplane-stable": "arduplane-stable",
+        "flake-utils": "flake-utils",
+        "nixpkgs": "nixpkgs"
+      }
+    },
+    "systems": {
+      "locked": {
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default",
+        "type": "github"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}
