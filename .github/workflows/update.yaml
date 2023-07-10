@@ -21,6 +21,9 @@ jobs:
           key: nix-cache-${{ hashFiles('flake.lock') }}
           restore-keys: |
             nix-cache-
+      - uses: DeterminateSystems/magic-nix-cache-action@main
+        with:
+          diagnostic-endpoint: ""
       - name: Configure git user
         run: |
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
