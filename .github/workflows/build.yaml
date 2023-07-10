@@ -16,7 +16,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ~/.cache/nix/eval-cache-*/
-          key: nix-eval-cache-${{ hashFiles('flake.lock') }}
+          key: nix-eval-cache-${{ hashFiles('**/*.nix', 'flake.lock') }}
           restore-keys: |
             nix-eval-cache-
       - name: Get packages from flake
@@ -46,7 +46,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ~/.cache/nix/eval-cache-*/
-          key: nix-eval-cache-${{ hashFiles('flake.lock') }}
+          key: nix-eval-cache-${{ hashFiles('**/*.nix', 'flake.lock') }}
       - uses: DeterminateSystems/magic-nix-cache-action@main
         with:
           diagnostic-endpoint: ""
