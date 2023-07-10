@@ -57,6 +57,25 @@
         "url": "https://github.com/ArduPilot/ardupilot"
       }
     },
+    "arduplane-beta": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1688449214,
+        "narHash": "sha256-RqR9E/NPhZFYQtBPxUcxlX7f+2gxn/T4yCq62vX76Ag=",
+        "ref": "refs/tags/ArduPlane-beta",
+        "rev": "4957173f45dbc76ed196338036491ddf8bf59529",
+        "revCount": 57208,
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/ArduPilot/ardupilot"
+      },
+      "original": {
+        "ref": "refs/tags/ArduPlane-beta",
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/ArduPilot/ardupilot"
+      }
+    },
     "arduplane-masters-thesis": {
       "flake": false,
       "locked": {
@@ -134,6 +153,7 @@
         "arducopter-bebop": "arducopter-bebop",
         "arducopter-beta": "arducopter-beta",
         "arducopter-stable": "arducopter-stable",
+        "arduplane-beta": "arduplane-beta",
         "arduplane-masters-thesis": "arduplane-masters-thesis",
         "arduplane-stable": "arduplane-stable",
         "flake-utils": "flake-utils",
