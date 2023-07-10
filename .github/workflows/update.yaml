@@ -22,10 +22,8 @@ jobs:
           restore-keys: |
             nix-cache-
       - uses: DeterminateSystems/magic-nix-cache-action@main
-        env:
-          ACTIONS_STEP_DEBUG: true
         with:
-          source-rev: 7d993eaabcbbdc1ef26aec52133ee19ef8ac29a9
+          source-revision: 7d993eaabcbbdc1ef26aec52133ee19ef8ac29a9
           diagnostic-endpoint: ""
       - name: Configure git user
         run: |
