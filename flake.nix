@@ -11,10 +11,24 @@
       flake = false;
       submodules = true;
     };
+    arducopter-stable = {
+      type = "git";
+      url = "https://github.com/ArduPilot/ardupilot";
+      ref = "refs/tags/ArduCopter-stable";
+      flake = false;
+      submodules = true;
+    };
     arducopter-beta = {
       type = "git";
       url = "https://github.com/ArduPilot/ardupilot";
       ref = "refs/tags/ArduCopter-beta";
+      flake = false;
+      submodules = true;
+    };
+    arduplane-masters-thesis = {
+      type = "git";
+      url = "https://github.com/lopsided98/ardupilot";
+      ref = "refs/heads/masters-thesis";
       flake = false;
       submodules = true;
     };
@@ -53,17 +67,33 @@
       });
       
       builds = {
-        bebop-copter = {
+        copter-bebop = {
           src = inputs.arducopter-bebop;
           firmware = "copter";
           board = "bebop";
         };
-        matekh743-plane = {
-          src = inputs.arduplane-stable;
+        copter-stable-cubesolo = {
+          src = inputs.arducopter-stable;
+          firmware = "copter";
+          board = "CubeSolo";
+        };
+        copter-beta-cubesolo = {
+          src = inputs.arducopter-beta;
+          firmware = "copter";
+          board = "CubeSolo";
+        };
+        # Fails to build
+        #plane-stable-matekh743 = {
+        #  src = inputs.arduplane-stable;
+        #  firmware = "plane";
+        #  board = "MatekH743";
+        #};
+        plane-masters-thesis-matekh743 = {
+          src = inputs.arduplane-masters-thesis;
           firmware = "plane";
           board = "MatekH743";
         };
-        omnibusf4pro-plane = {
+        plane-stable-omnibusf4pro = {
           src = inputs.arduplane-stable;
           firmware = "plane";
           board = "omnibusf4pro";

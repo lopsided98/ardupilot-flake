@@ -38,6 +38,44 @@
         "url": "https://github.com/ArduPilot/ardupilot"
       }
     },
+    "arducopter-stable": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1685494289,
+        "narHash": "sha256-DQe8QPSM/5g5pGbIg2Jg56WXUUkLUvOCmG4zuZEcXKI=",
+        "ref": "refs/tags/ArduCopter-stable",
+        "rev": "c8506ed4782f3867dc544c8dae845a976cf9b853",
+        "revCount": 55170,
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/ArduPilot/ardupilot"
+      },
+      "original": {
+        "ref": "refs/tags/ArduCopter-stable",
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/ArduPilot/ardupilot"
+      }
+    },
+    "arduplane-masters-thesis": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1682457908,
+        "narHash": "sha256-f7c/fW9eSkJatdsr4HIb/IbgWVSP0Sjc3GxyoXIfYzw=",
+        "ref": "refs/heads/masters-thesis",
+        "rev": "5a4e71dc3e9b621ee4c420902bd69ff3ae60ddca",
+        "revCount": 55127,
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/lopsided98/ardupilot"
+      },
+      "original": {
+        "ref": "refs/heads/masters-thesis",
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/lopsided98/ardupilot"
+      }
+    },
     "arduplane-stable": {
       "flake": false,
       "locked": {
@@ -95,6 +133,8 @@
       "inputs": {
         "arducopter-bebop": "arducopter-bebop",
         "arducopter-beta": "arducopter-beta",
+        "arducopter-stable": "arducopter-stable",
+        "arduplane-masters-thesis": "arduplane-masters-thesis",
         "arduplane-stable": "arduplane-stable",
         "flake-utils": "flake-utils",
         "nixpkgs": "nixpkgs"
