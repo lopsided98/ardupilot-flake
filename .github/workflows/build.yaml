@@ -32,6 +32,7 @@ jobs:
     needs:
       - packages
     strategy:
+      fail-fast: false
       matrix:
         package: ${{ fromJSON(needs.packages.outputs.packages) }}
     steps:
