@@ -79,11 +79,11 @@
     "arduplane-masters-thesis": {
       "flake": false,
       "locked": {
-        "lastModified": 1682457908,
-        "narHash": "sha256-f7c/fW9eSkJatdsr4HIb/IbgWVSP0Sjc3GxyoXIfYzw=",
+        "lastModified": 1689021688,
+        "narHash": "sha256-sd5GXFSwo6XF4VdyKQCHlUDEpX82Bc2JZ7t2+oTC/1U=",
         "ref": "refs/heads/masters-thesis",
-        "rev": "5a4e71dc3e9b621ee4c420902bd69ff3ae60ddca",
-        "revCount": 55127,
+        "rev": "b3038c29814cfe1ad28e9f7a3b2cdbc7318bb3be",
+        "revCount": 55180,
         "submodules": true,
         "type": "git",
         "url": "https://github.com/lopsided98/ardupilot"
