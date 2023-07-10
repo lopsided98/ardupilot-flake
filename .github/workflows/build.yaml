@@ -17,7 +17,7 @@ jobs:
         run: |
           echo -n "packages=" >> "$GITHUB_OUTPUT"
           nix flake show --json | \
-            jq ".packages.\"x86_64-linux\" | keys" >> "$GITHUB_OUTPUT"
+            jq -c ".packages.\"x86_64-linux\" | keys" >> "$GITHUB_OUTPUT"
     outputs:  
       packages: ${{steps.packages.outputs.packages}}
   build:
