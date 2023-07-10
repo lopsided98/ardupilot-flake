@@ -15,16 +15,18 @@ jobs:
       - uses: cachix/install-nix-action@v22
         with:
           github_access_token: ${{ secrets.GITHUB_TOKEN }}
-      - uses: actions/cache@v3
-        with:
-          path: ~/.cache/nix
-          key: nix-cache-${{ hashFiles('flake.lock') }}
-          restore-keys: |
-            nix-cache-
-      - uses: DeterminateSystems/magic-nix-cache-action@main
-        with:
-          source-revision: 7d993eaabcbbdc1ef26aec52133ee19ef8ac29a9
-          diagnostic-endpoint: ""
+      # FIXME: magic-nix-cache doesn't cache sources, which is all we care about
+      # here.
+      # See: https://github.com/DeterminateSystems/magic-nix-cache/issues/28
+#      - uses: actions/cache@v3
+#        with:
+#          path: ~/.cache/nix
+#          key: nix-cache-${{ hashFiles('flake.lock') }}
+#          restore-keys: |
+#            nix-cache-
+#      - uses: DeterminateSystems/magic-nix-cache-action@main
+#        with:
+#          diagnostic-endpoint: ""
       - name: Configure git user
         run: |
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -37,7 +39,7 @@ jobs:
       # This doesn't quite seem to work. I assumed it would cause the cache to
       # be written to a new key if flake.lock was updated, but it still seems
       # to use the old key.
-      - name: Update cache key
-        run: |
-          STATE_CACHE_KEY="nix-cache-${{ hashFiles('flake.lock') }}"
-          echo "STATE_CACHE_KEY=${STATE_CACHE_KEY}" >> $GITHUB_ENV
+#      - name: Update cache key
+#        run: |
+#          STATE_CACHE_KEY="nix-cache-${{ hashFiles('flake.lock') }}"
+#          echo "STATE_CACHE_KEY=${STATE_CACHE_KEY}" >> $GITHUB_ENV
