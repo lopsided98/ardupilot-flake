@@ -12,12 +12,13 @@ jobs:
       - uses: cachix/install-nix-action@v22
         with:
           github_access_token: ${{ secrets.GITHUB_TOKEN }}
-      - uses: actions/cache@v3
+      - name: Nix eval cache
+        uses: actions/cache@v3
         with:
-          path: ~/.cache/nix
-          key: nix-cache-${{ hashFiles('flake.lock') }}
+          path: ~/.cache/nix/eval-cache-*/
+          key: nix-eval-cache-${{ hashFiles('flake.lock') }}
           restore-keys: |
-            nix-cache-
+            nix-eval-cache-
       - name: Get packages from flake
         id: packages
         run: |
@@ -40,12 +41,11 @@ jobs:
       - uses: cachix/install-nix-action@v22
         with:
           github_access_token: ${{ secrets.GITHUB_TOKEN }}
-      - uses: actions/cache@v3
+      - name: Nix eval cache
+        uses: actions/cache@v3
         with:
-          path: ~/.cache/nix
-          key: nix-cache-${{ hashFiles('flake.lock') }}
-          restore-keys: |
-            nix-cache-
+          path: ~/.cache/nix/eval-cache-*/
+          key: nix-eval-cache-${{ hashFiles('flake.lock') }}
       - uses: DeterminateSystems/magic-nix-cache-action@main
         with:
           diagnostic-endpoint: ""
