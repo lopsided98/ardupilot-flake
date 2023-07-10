@@ -27,8 +27,14 @@ jobs:
           git config --global user.name "github-actions[bot]"
       - name: Update flake
         run: |
+          ls -l ~/.nix/cache
           nix flake update --commit-lock-file
+          ls -l ~/.nix/cache
           git push
+      # From: https://github.com/actions/toolkit/issues/505#issuecomment-1449729064
+      # This doesn't quite seem to work. I assumed it would cause the cache to
+      # be written to a new key if flake.lock was updated, but it still seems
+      # to use the old key.
       - name: Update cache key
         run: |
           STATE_CACHE_KEY="nix-cache-${{ hashFiles('flake.lock') }}"
