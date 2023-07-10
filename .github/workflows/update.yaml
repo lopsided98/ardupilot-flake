@@ -15,7 +15,9 @@ jobs:
       - uses: actions/cache@v3
         with:
           path: ~/.cache/nix
-          key: nix-cache
+          key: nix-cache-${{ hashFiles('flake.lock') }}
+          restore-keys: |
+            nix-cache-
       - uses: cachix/install-nix-action@v22
         with:
           github_access_token: ${{ secrets.GITHUB_TOKEN }}
