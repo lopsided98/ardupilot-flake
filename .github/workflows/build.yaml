@@ -23,7 +23,7 @@ jobs:
         with:
           # Custom binary that allows uploading sources
           # Built from: https://github.com/lopsided98/magic-nix-cache/commit/7d993eaabcbbdc1ef26aec52133ee19ef8ac29a9
-          source-binary: https://files.benwolsieffer.com/Projects/magic-nix-cache/magic-nix-cache
+          source-url: https://files.benwolsieffer.com/Projects/magic-nix-cache/magic-nix-cache
           diagnostic-endpoint: ""
       - name: Get packages from flake
         id: packages
