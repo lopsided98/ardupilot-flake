@@ -95,7 +95,6 @@
         #  firmware = "plane";
         #  board = "MatekH743";
         #};
-        # Fails to build
         plane-beta-matekh743 = {
           src = inputs.arduplane-beta;
           firmware = "plane";
