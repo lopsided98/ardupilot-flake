@@ -21,6 +21,15 @@ jobs:
           key: nix-cache-${{ hashFiles('flake.lock') }}
           restore-keys: |
             nix-cache-
-      - run: |
+      - name: Configure git user
+        run: |
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
+      - name: Update flake
+        run: |
           nix flake update --commit-lock-file
           git push
+      - name: Update cache key
+        run: |
+          STATE_CACHE_KEY="nix-cache-${{ hashFiles('flake.lock') }}"
+          echo "STATE_CACHE_KEY=${STATE_CACHE_KEY}" >> $GITHUB_ENV
