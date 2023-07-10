@@ -22,7 +22,10 @@ jobs:
           restore-keys: |
             nix-cache-
       - uses: DeterminateSystems/magic-nix-cache-action@main
+        env:
+          ACTIONS_STEP_DEBUG: true
         with:
+          source-rev: 7d993eaabcbbdc1ef26aec52133ee19ef8ac29a9
           diagnostic-endpoint: ""
       - name: Configure git user
         run: |
@@ -30,9 +33,7 @@ jobs:
           git config --global user.name "github-actions[bot]"
       - name: Update flake
         run: |
-          ls -l ~/.cache/nix/gitv3
           nix flake update --debug --commit-lock-file
-          ls -l ~/.cache/nix/gitv3
           git push
       # From: https://github.com/actions/toolkit/issues/505#issuecomment-1449729064
       # This doesn't quite seem to work. I assumed it would cause the cache to
