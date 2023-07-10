@@ -11,6 +11,13 @@
       flake = false;
       submodules = true;
     };
+    arduplane-beta = {
+      type = "git";
+      url = "https://github.com/ArduPilot/ardupilot";
+      ref = "refs/tags/ArduPlane-beta";
+      flake = false;
+      submodules = true;
+    };
     arducopter-stable = {
       type = "git";
       url = "https://github.com/ArduPilot/ardupilot";
@@ -67,7 +74,7 @@
       });
       
       builds = {
-        copter-bebop = {
+        copter-beta-bebop = {
           src = inputs.arducopter-bebop;
           firmware = "copter";
           board = "bebop";
@@ -88,6 +95,12 @@
         #  firmware = "plane";
         #  board = "MatekH743";
         #};
+        # Fails to build
+        plane-beta-matekh743 = {
+          src = inputs.arduplane-beta;
+          firmware = "plane";
+          board = "MatekH743";
+        };
         plane-masters-thesis-matekh743 = {
           src = inputs.arduplane-masters-thesis;
           firmware = "plane";
@@ -95,6 +108,11 @@
         };
         plane-stable-omnibusf4pro = {
           src = inputs.arduplane-stable;
+          firmware = "plane";
+          board = "omnibusf4pro";
+        };
+        plane-beta-omnibusf4pro = {
+          src = inputs.arduplane-beta;
           firmware = "plane";
           board = "omnibusf4pro";
         };
