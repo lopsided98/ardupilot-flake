@@ -39,14 +39,14 @@
       ardupilot = {
         src,
         firmware,
-        board
+        board, ...
       }@args: pkgs.callPackage ./. (args // {
         git = fake-git src;
       });
       
       ardupilotShell = {
         firmware,
-        board
+        board, ...
       }@args: pkgs.callPackage ./. (args // {
         src = null;
         dev = true;
