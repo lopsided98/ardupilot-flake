@@ -11,6 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
+          token: ${{ secrets.UPDATE_GITHUB_TOKEN }}
           fetch-depth: 0
       - uses: cachix/install-nix-action@v22
         with:
@@ -36,12 +37,3 @@ jobs:
         run: |
           nix flake update --debug --commit-lock-file
           git push
-      - uses: actions/github-script@v6
-        with:
-          retries: 3
-          script: |
-            github.rest.repos.createDispatchEvent({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              event_type: "update",
-            });
