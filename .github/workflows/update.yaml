@@ -15,6 +15,13 @@ jobs:
       - uses: cachix/install-nix-action@v22
         with:
           github_access_token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Nix Git cache
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/nix/git*/
+          key: nix-git-cache-${{ hashFiles('flake.lock') }}
+          restore-keys: |
+            nix-git-cache-
       - uses: DeterminateSystems/magic-nix-cache-action@main
         with:
           # Custom binary that allows uploading sources
