@@ -17,6 +17,9 @@ jobs:
           github_access_token: ${{ secrets.GITHUB_TOKEN }}
       - uses: DeterminateSystems/magic-nix-cache-action@main
         with:
+          # Custom binary that allows uploading sources
+          # Built from: https://github.com/lopsided98/magic-nix-cache/commit/7d993eaabcbbdc1ef26aec52133ee19ef8ac29a9
+          source-url: https://files.benwolsieffer.com/Projects/magic-nix-cache/magic-nix-cache
           diagnostic-endpoint: ""
       - name: Configure git user
         run: |
@@ -26,3 +29,12 @@ jobs:
         run: |
           nix flake update --debug --commit-lock-file
           git push
+      - uses: actions/github-script@v6
+        with:
+          retries: 3
+          script: |
+            github.rest.repos.createDispatchEvent({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              event_type: "update",
+            });

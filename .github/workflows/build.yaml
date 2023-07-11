@@ -2,6 +2,8 @@ name: "Build"
 on:
   push:
   pull_request:
+  repository_dispatch:
+    types: [update]
 jobs:
   packages:
     runs-on: ubuntu-latest
