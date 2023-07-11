@@ -45,3 +45,9 @@ jobs:
         with:
           diagnostic-endpoint: ""
       - run: nix build --debug .#${{ matrix.package }}
+      - name: Get result Nix store path
+        run: echo "result=$(readlink result)" >> $GITHUB_ENV
+      - uses: actions/upload-artifact@v3
+        with:
+          name: ${{ matrix.package }}
+          path: ${{ env.result }}
