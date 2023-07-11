@@ -79,10 +79,10 @@
     "arduplane-masters-thesis": {
       "flake": false,
       "locked": {
-        "lastModified": 1689021688,
+        "lastModified": 1689042098,
         "narHash": "sha256-sd5GXFSwo6XF4VdyKQCHlUDEpX82Bc2JZ7t2+oTC/1U=",
         "ref": "refs/heads/masters-thesis",
-        "rev": "b3038c29814cfe1ad28e9f7a3b2cdbc7318bb3be",
+        "rev": "70a2891a77bbf55302fcb49412caad15bcf4acf6",
         "revCount": 55180,
         "submodules": true,
         "type": "git",
