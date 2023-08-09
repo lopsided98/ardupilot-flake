@@ -35,5 +35,5 @@ jobs:
           git config --global user.name "github-actions[bot]"
       - name: Update flake
         run: |
-          nix flake update --debug --commit-lock-file
+          nix flake update --commit-lock-file
           git push
