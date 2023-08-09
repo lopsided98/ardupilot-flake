@@ -22,7 +22,7 @@ jobs:
         id: packages
         run: |
           echo -n "packages=" >> "$GITHUB_OUTPUT"
-          nix flake show --debug --json | \
+          nix flake show --json | \
             jq -c ".packages.\"x86_64-linux\" | keys" >> "$GITHUB_OUTPUT"
     outputs:  
       packages: ${{steps.packages.outputs.packages}}
@@ -44,7 +44,7 @@ jobs:
       - uses: DeterminateSystems/magic-nix-cache-action@main
         with:
           diagnostic-endpoint: ""
-      - run: nix build --debug .#${{ matrix.package }}
+      - run: nix build .#${{ matrix.package }}
       - name: Get result Nix store path
         run: echo "result=$(readlink result)" >> $GITHUB_ENV
       - uses: actions/upload-artifact@v3
