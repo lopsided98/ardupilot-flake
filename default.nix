@@ -56,21 +56,19 @@ in pkgsHost.callPackage ({
     lib.optional (platform == "stm32") gcc-arm-embedded ++
     lib.optionals dev [ glibcLocales astyle mavproxy procps gdb ];
 
-  buildInputs = [
-    ((libiio.override {
-      avahiSupport = false;
-      libxml2 = null;
-      libusb1 = null;
-    }).overrideAttrs ({
-      cmakeFlags ? [], ...
-    }: {
-      cmakeFlags = cmakeFlags ++ [
-        "-DWITH_NETWORK_BACKEND=OFF"
-        "-DWITH_USB_BACKEND=OFF"
-        "-DWITH_XML_BACKEND=OFF"
-      ];
-    }))
-  ];
+  buildInputs = lib.optional (board == "bebop") ((libiio.override {
+    avahiSupport = false;
+    libxml2 = null;
+    libusb1 = null;
+  }).overrideAttrs ({
+    cmakeFlags ? [], ...
+  }: {
+    cmakeFlags = cmakeFlags ++ [
+      "-DWITH_NETWORK_BACKEND=OFF"
+      "-DWITH_USB_BACKEND=OFF"
+      "-DWITH_XML_BACKEND=OFF"
+    ];
+  }));
 
   # HOST_GDB = pkgsHost.gdb.override { enableDebuginfod = false; };
 
