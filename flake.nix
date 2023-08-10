@@ -47,7 +47,7 @@
     };
   };
 
-  outputs = { nixpkgs }@inputs: let
+  outputs = { nixpkgs, ... }@inputs: let
     systems = [ "x86_64-linux" ];
   in
     inputs.flake-utils.lib.eachSystem systems (system: let
