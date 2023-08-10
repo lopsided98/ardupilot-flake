@@ -2,7 +2,6 @@
   description = "ArduPilot";
 
   inputs = {
-    nixpkgs.url = "github:lopsided98/nixpkgs/python-cross-musl";
     flake-utils.url = "github:numtide/flake-utils";
     arduplane-stable = {
       type = "git";
@@ -48,7 +47,7 @@
     };
   };
 
-  outputs = inputs: let
+  outputs = { nixpkgs }@inputs: let
     systems = [ "x86_64-linux" ];
   in
     inputs.flake-utils.lib.eachSystem systems (system: let
