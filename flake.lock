@@ -22,11 +22,11 @@
     "arducopter-beta": {
       "flake": false,
       "locked": {
-        "lastModified": 1690876122,
-        "narHash": "sha256-vj4VZt6wa2sAIcE5Q3iDgZDEr4Jlgg9TmtPa0Ye10n0=",
+        "lastModified": 1691970283,
+        "narHash": "sha256-GVkZBy5ByWrexuawJXf+4n1JwW8ku48pcI5jI11MO4E=",
         "ref": "refs/tags/ArduCopter-beta",
-        "rev": "cd98d95f8e69e1c20dc936cb9bb29ffde9fb951a",
-        "revCount": 57251,
+        "rev": "0e6373cc37b2690348bc10c9c8a4360026eb1c1f",
+        "revCount": 57271,
         "submodules": true,
         "type": "git",
         "url": "https://github.com/ArduPilot/ardupilot"
