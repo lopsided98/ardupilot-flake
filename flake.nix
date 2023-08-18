@@ -2,7 +2,7 @@
   description = "ArduPilot";
 
   inputs = {
-    nixpkgs.url = "github:lopsided98/nixpkgs/libiio-python-static";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     flake-utils.url = "github:numtide/flake-utils";
     arduplane-stable = {
       type = "git";
