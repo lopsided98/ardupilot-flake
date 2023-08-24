@@ -74,7 +74,7 @@
       });
       
       builds = {
-        copter-beta-bebop = {
+        copter-stable-bebop = {
           src = inputs.arducopter-bebop;
           firmware = "copter";
           board = "bebop";
@@ -89,12 +89,11 @@
           firmware = "copter";
           board = "CubeSolo";
         };
-        # Fails to build
-        #plane-stable-matekh743 = {
-        #  src = inputs.arduplane-stable;
-        #  firmware = "plane";
-        #  board = "MatekH743";
-        #};
+        plane-stable-matekh743 = {
+          src = inputs.arduplane-stable;
+          firmware = "plane";
+          board = "MatekH743";
+        };
         plane-beta-matekh743 = {
           src = inputs.arduplane-beta;
           firmware = "plane";
