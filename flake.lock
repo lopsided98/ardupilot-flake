@@ -3,11 +3,11 @@
     "arducopter-bebop": {
       "flake": false,
       "locked": {
-        "lastModified": 1688942175,
-        "narHash": "sha256-ub0i4+K5Q471dhwgS+AaTRk05HIaHM6Pu/gQ5FDdKas=",
+        "lastModified": 1692896415,
+        "narHash": "sha256-7om5VRJkeDiig+ahDYFJnPtn+rdwulB2ih5boyzwUg0=",
         "ref": "refs/heads/parrot-bebop",
-        "rev": "35da15d8cd0a3045e02b7528df34e19a2d7d9ca4",
-        "revCount": 57220,
+        "rev": "4951f4bfd3eba1b865964adb3aabfd271982d9e2",
+        "revCount": 57283,
         "submodules": true,
         "type": "git",
         "url": "https://github.com/lopsided98/ardupilot"
