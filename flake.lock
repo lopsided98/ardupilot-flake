@@ -22,11 +22,11 @@
     "arducopter-beta": {
       "flake": false,
       "locked": {
-        "lastModified": 1693910415,
-        "narHash": "sha256-0hsyBwwpgoXW+kovW4+UVlw2a8v1iMgeVHd41bGuzIc=",
+        "lastModified": 1694668232,
+        "narHash": "sha256-p/N2Vj44GBMPNKbBUNDa+NNN5W9L6XmcHYYGhWIMWH0=",
         "ref": "refs/tags/ArduCopter-beta",
-        "rev": "720e8c26667ec1e5555f34d8af47f874f07c12f7",
-        "revCount": 57308,
+        "rev": "42f7fdd03e8822a3884b7dab7e4884bf71e9fbaf",
+        "revCount": 57337,
         "submodules": true,
         "type": "git",
         "url": "https://github.com/ArduPilot/ardupilot"
@@ -60,11 +60,11 @@
     "arduplane-beta": {
       "flake": false,
       "locked": {
-        "lastModified": 1693908874,
-        "narHash": "sha256-S8u9pJiy/jTn7yLb5sFES+XhS8tkacT7/P7D6M2SQI0=",
+        "lastModified": 1694668241,
+        "narHash": "sha256-p/N2Vj44GBMPNKbBUNDa+NNN5W9L6XmcHYYGhWIMWH0=",
         "ref": "refs/tags/ArduPlane-beta",
-        "rev": "6e3279bdf9945cf2921c93407a63a0672f3d04e8",
-        "revCount": 57301,
+        "rev": "2da8f95492e7f74c920889dd4c13dd63f8c66fe9",
+        "revCount": 57337,
         "submodules": true,
         "type": "git",
         "url": "https://github.com/ArduPilot/ardupilot"
@@ -119,11 +119,11 @@
         "systems": "systems"
       },
       "locked": {
-        "lastModified": 1692799911,
-        "narHash": "sha256-3eihraek4qL744EvQXsK1Ha6C3CR7nnT8X2qWap4RNk=",
+        "lastModified": 1694529238,
+        "narHash": "sha256-zsNZZGTGnMOf9YpHKJqMSsa0dXbfmxeoJ7xHlrt+xmY=",
         "owner": "numtide",
         "repo": "flake-utils",
-        "rev": "f9e7cf818399d17d347f847525c5a5a8032e4e44",
+        "rev": "ff7b65b44d01cf9ba6a71320833626af21126384",
         "type": "github"
       },
       "original": {
@@ -134,11 +134,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1694343207,
-        "narHash": "sha256-jWi7OwFxU5Owi4k2JmiL1sa/OuBCQtpaAesuj5LXC8w=",
+        "lastModified": 1694593561,
+        "narHash": "sha256-WSaIQZ5s9N9bDFkEMTw6P9eaZ9bv39ZhsiW12GtTNM0=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "78058d810644f5ed276804ce7ea9e82d92bee293",
+        "rev": "1697b7d480449b01111e352021f46e5879e47643",
         "type": "github"
       },
       "original": {
