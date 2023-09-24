@@ -42,7 +42,7 @@ in pkgsHost.callPackage ({
 , buildPackages
 
 , pkg-config
-, gdb
+, gdbHostCpuOnly
 
 , libiio
 }: stdenv.mkDerivation {
@@ -54,7 +54,7 @@ in pkgsHost.callPackage ({
   nativeBuildInputs = [ pkg-config which gawk git pkgsBuild.stdenv.cc ] ++
     (with python3.pkgs; [ future pyserial empy pexpect setuptools ]) ++
     lib.optional (platform == "stm32") gcc-arm-embedded ++
-    lib.optionals dev [ glibcLocales astyle mavproxy procps gdb ];
+    lib.optionals dev [ glibcLocales astyle mavproxy procps gdbHostCpuOnly ];
 
   buildInputs = lib.optional (board == "bebop") ((libiio.override {
     avahiSupport = false;
