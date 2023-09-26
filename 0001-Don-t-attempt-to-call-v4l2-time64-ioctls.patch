@@ -1,0 +1,72 @@
+From d994a1e22bbcf95f1f34c6ade143f2b7939847f8 Mon Sep 17 00:00:00 2001
+From: Ben Wolsieffer <benwolsieffer@gmail.com>
+Date: Mon, 25 Sep 2023 19:02:59 -0400
+Subject: [PATCH] Don't attempt to call v4l2 time64 ioctls
+
+The Parrot Bebop kernel doesn't support time64 ioctls (since it is much
+too old), but rather than returning -ENOTTY like musl expects, the syscall
+just hangs. This is a kernel bug, but it is easier to work around it here
+than fix the kernel right now.
+
+I'm not sure if this bug affects all ioctls, but I only care about the
+v4l2 (really only VIDIOC_QUERYBUF), so only check for those.
+---
+ src/misc/ioctl.c | 21 +++++++++++++++++----
+ 1 file changed, 17 insertions(+), 4 deletions(-)
+
+diff --git a/src/misc/ioctl.c b/src/misc/ioctl.c
+index 35804f02..8fb6bcfa 100644
+--- a/src/misc/ioctl.c
++++ b/src/misc/ioctl.c
+@@ -7,6 +7,7 @@
+ #include <stdint.h>
+ #include <string.h>
+ #include <endian.h>
++#include <linux/videodev2.h>
+ #include "syscall.h"
+ 
+ #define alignof(t) offsetof(struct { char c; t x; }, x)
+@@ -30,7 +31,8 @@ struct ioctl_compat_map {
+  * number producing macros; only size of result is meaningful. */
+ #define new_misaligned(n) struct { int i; time_t t; char c[(n)-4]; }
+ 
+-struct v4l2_event {
++/* Conflicts with the definition from videodev2.h */
++struct v4l2_event_musl {
+ 	uint32_t a;
+ 	uint64_t b[8];
+ 	uint32_t c[2], ts[2], d[9];
+@@ -63,8 +65,8 @@ static const struct ioctl_compat_map compat_map[] = {
+ 	{ _IOWR('V', 93, new_misaligned(68)), _IOWR('V', 93, char[68]), 68, WR, 1, OFFS(20, 24) },
+ 
+ 	/* VIDIOC_DQEVENT */
+-	{ _IOR('V', 89, new_misaligned(120)), _IOR('V', 89, struct v4l2_event), sizeof(struct v4l2_event),
+-	  R, 0, OFFS(offsetof(struct v4l2_event, ts[0]), offsetof(struct v4l2_event, ts[1])) },
++	{ _IOR('V', 89, new_misaligned(120)), _IOR('V', 89, struct v4l2_event_musl), sizeof(struct v4l2_event_musl),
++	  R, 0, OFFS(offsetof(struct v4l2_event_musl, ts[0]), offsetof(struct v4l2_event_musl, ts[1])) },
+ 
+ 	/* VIDIOC_OMAP3ISP_STAT_REQ */
+ 	{ _IOWR('V', 192+6, char[32]), _IOWR('V', 192+6, char[24]), 22, WR, 0, OFFS(0,4) },
+@@ -132,7 +134,18 @@ int ioctl(int fd, int req, ...)
+ 	va_start(ap, req);
+ 	arg = va_arg(ap, void *);
+ 	va_end(ap);
+-	int r = __syscall(SYS_ioctl, fd, req, arg);
++	int r;
++	switch (req) {
++		case VIDIOC_QUERYBUF:
++		case VIDIOC_QBUF:
++		case VIDIOC_DQBUF:
++		case VIDIOC_PREPARE_BUF:
++		case VIDIOC_DQEVENT:
++			r = -ENOTTY;
++			break;
++		default:
++			r = __syscall(SYS_ioctl, fd, req, arg);
++	}
+ 	if (SIOCGSTAMP != SIOCGSTAMP_OLD && req && r==-ENOTTY) {
+ 		for (int i=0; i<sizeof compat_map/sizeof *compat_map; i++) {
+ 			if (compat_map[i].new_req != req) continue;
+-- 
+2.42.0
+

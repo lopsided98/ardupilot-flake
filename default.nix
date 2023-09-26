@@ -1,18 +1,8 @@
-{ pkgs
-, pkgsStatic
-, pkgsCross
+{ nixpkgs
+, lib
+, pkgs
 , callPackage
-
-, which
-, gawk
 , git
-, python3
-, gcc-arm-embedded
-
-, glibcLocales
-, astyle
-, mavproxy
-, procps
 
 , src ? null
 , dev ? false
@@ -21,27 +11,56 @@
 }:
 assert !dev -> src != null;
 let
-  platform = {
-    "bebop" = "linux";
-    "sitl" = "native";
-  }.${board} or "stm32";
+  hostPlatform = {
+    "bebop" = {
+      config = "armv7l-unknown-linux-musleabihf";
+      isStatic = true;
+      gcc = {
+        # See: https://github.com/gcc-mirror/gcc/blob/36eec7995b4d53083c3ee7824bd765b5eba8b1a1/gcc/config/arm/arm-cpus.in#L1167
+        arch = "armv7-a+mp+sec+neon-fp16";
+        tune = "cortex-a9";
+      };
+    };
+    "sitl" = pkgs.stdenv.hostPlatform;
+  }.${board} or {
+    config = "arm-none-eabi";
+    libc = "newlib-nano";
+  };
 
-  isStatic = platform == "linux";
+  # musl tries to call time64 ioctls and falls back to the old versions if they
+  # aren't available. The Bebop kernel is too old to support time64, and it
+  # also has a bug where attempting to call the time64 ioctl just hangs,
+  # preventing the fallback logic from working. This overlay patches musl to
+  # not attempt to call the v4l2 time64 ioctls.
+  bebopMuslIoctlHackOverlay = final: prev: {
+    musl = prev.musl.overrideAttrs ({ patches ? [], buildInputs ? [], ... }: {
+      # musl is compiled with -nostdinc, but this forces the headers to be on
+      # the include path of the compiler wrapper.
+      buildInputs = buildInputs ++ [ final.linuxHeaders ];
+      patches = patches ++ [ ./0001-Don-t-attempt-to-call-v4l2-time64-ioctls.patch ];
+    });
+  };
 
-  pkgsHost = if platform == "linux"
-    then {
-        "bebop" = pkgsCross.armv7l-hf-multiplatform;
-      }.${board}.pkgsStatic
-    else pkgs;
-  pkgsBuild = if true
-    then pkgs.pkgsStatic
-    else pkgsHost.buildPackages;
+  pkgsHost = nixpkgs {
+    localSystem = pkgs.stdenv.hostPlatform;
+    crossSystem = hostPlatform;
+    overlays = lib.optional (board == "bebop") bebopMuslIoctlHackOverlay;
+  };
 in pkgsHost.callPackage ({
   lib
 , stdenv
 , buildPackages
 
 , pkg-config
+, which
+, gawk
+, python3
+, gcc-arm-embedded
+
+, glibcLocales
+, astyle
+, mavproxy
+, procps
 , gdbHostCpuOnly
 
 , libiio
@@ -51,9 +70,9 @@ in pkgsHost.callPackage ({
 
   inherit src;
 
-  nativeBuildInputs = [ pkg-config which gawk git pkgsBuild.stdenv.cc ] ++
-    (with python3.pkgs; [ future pyserial empy pexpect setuptools ]) ++
-    lib.optional (platform == "stm32") gcc-arm-embedded ++
+  depsBuildBuild = [ buildPackages.stdenv.cc ];
+  nativeBuildInputs = [ pkg-config which gawk git ] ++
+    (with buildPackages.python3.pkgs; [ future pyserial empy pexpect setuptools ]) ++
     lib.optionals dev [ glibcLocales astyle mavproxy procps gdbHostCpuOnly ];
 
   buildInputs = lib.optional (board == "bebop") ((libiio.override {
@@ -70,30 +89,26 @@ in pkgsHost.callPackage ({
     ];
   }));
 
-  # HOST_GDB = pkgsHost.gdb.override { enableDebuginfod = false; };
+  # env.HOST_GDB = pkgsHost.gdb.override { enableDebuginfod = false; };
 
   postPatch = ''
     patchShebangs waf
-    substituteInPlace libraries/AP_Scripting/wscript \
-      --replace '"gcc"' '"${pkgsBuild.stdenv.hostPlatform.config}-gcc"'
   '';
 
-  # Disable optimizations, which cause -Werror failures with the Lua bindings
-  # generator.
-  hardeningDisable = [ "fortify" ];
+  separateDebugInfo = true;
 
+  # No point in stripping microcontroller platforms because we don't actually
+  # run the ELF file.
+  dontStrip = stdenv.hostPlatform.isNone;
   # Fully strip to reduce binary size
   stripAllList = [ "bin" ];
 
-  # Prevent waf from using the host compiler
   preConfigure = ''
     export PKGCONFIG="$PKG_CONFIG"
-  '' + lib.optionalString (platform != "linux") ''
-    unset CXX CC OBJCOPY SIZE
   '';
 
   wafConfigureFlags = [ "--board" board ] ++
-    lib.optional isStatic "--static";
+    lib.optional stdenv.hostPlatform.isStatic "--static";
 
   configurePhase = ''
     runHook preConfigure

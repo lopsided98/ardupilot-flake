@@ -62,6 +62,7 @@
         firmware,
         board, ...
       }@args: pkgs.callPackage ./. (args // {
+        nixpkgs = import inputs.nixpkgs;
         git = fake-git src;
       });
       
