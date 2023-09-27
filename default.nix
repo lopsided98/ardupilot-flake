@@ -27,6 +27,12 @@ let
     libc = "newlib-nano";
   };
 
+  # Optimize for size on bare metal platforms. This makes newlib small enough
+  # to fit ArduPilot on 1 MiB processors.
+  optimizeSizeOverlay = final: prev: lib.optionalAttrs prev.stdenv.hostPlatform.isNone {
+    stdenv = prev.withCFlags [ "-Os" ] prev.stdenv;
+  };
+
   # musl tries to call time64 ioctls and falls back to the old versions if they
   # aren't available. The Bebop kernel is too old to support time64, and it
   # also has a bug where attempting to call the time64 ioctl just hangs,
@@ -44,7 +50,8 @@ let
   pkgsHost = nixpkgs {
     localSystem = pkgs.stdenv.hostPlatform;
     crossSystem = hostPlatform;
-    overlays = lib.optional (board == "bebop") bebopMuslIoctlHackOverlay;
+    overlays = [ optimizeSizeOverlay ] ++
+      lib.optional (board == "bebop") bebopMuslIoctlHackOverlay;
   };
 in pkgsHost.callPackage ({
   lib
@@ -97,7 +104,7 @@ in pkgsHost.callPackage ({
 
   separateDebugInfo = true;
 
-  # No point in stripping microcontroller platforms because we don't actually
+  # No point in stripping bare metal platforms because we don't actually
   # run the ELF file.
   dontStrip = stdenv.hostPlatform.isNone;
   # Fully strip to reduce binary size
