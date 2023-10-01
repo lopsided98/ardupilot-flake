@@ -25,6 +25,10 @@ let
   }.${board} or {
     config = "arm-none-eabi";
     libc = "newlib-nano";
+    gcc = {
+      arch = "armv7e-m+fp";
+      float-abi = "hard";
+    };
   };
 
   # Optimize for size on bare metal platforms. This makes newlib small enough
