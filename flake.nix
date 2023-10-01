@@ -70,6 +70,7 @@
         firmware,
         board, ...
       }@args: pkgs.callPackage ./. (args // {
+        nixpkgs = import inputs.nixpkgs;
         src = null;
         dev = true;
       });
