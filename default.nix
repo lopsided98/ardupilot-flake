@@ -31,10 +31,19 @@ let
     };
   };
 
-  # Optimize for size on bare metal platforms. This makes newlib small enough
-  # to fit ArduPilot on 1 MiB processors.
+  # Optimize for size on bare metal platforms. This makes the build small
+  # enough to fit ArduPilot on 1 MiB processors.
   optimizeSizeOverlay = final: prev: lib.optionalAttrs prev.stdenv.hostPlatform.isNone {
-    stdenv = prev.withCFlags [ "-Os" ] prev.stdenv;
+    stdenv = lib.pipe prev.stdenv [
+      # Optimize newlib
+      (prev.withCFlags [ "-Os" ])
+      # Optimize libstdc++
+      (stdenv: prev.overrideCC stdenv (prev.buildPackages.wrapCCWith {
+        cc = prev.buildPackages.gcc-unwrapped.overrideAttrs (oldAttrs: {
+          EXTRA_FLAGS_FOR_TARGET = oldAttrs.EXTRA_FLAGS_FOR_TARGET ++ [ "-Os" ];
+        });
+      }))
+    ];
   };
 
   # musl tries to call time64 ioctls and falls back to the old versions if they
