@@ -74,7 +74,9 @@ in pkgsHost.callPackage ({
 , pkg-config
 , which
 , gawk
-, python3
+# Python 3.11 support needs:
+# https://github.com/ArduPilot/ardupilot/commit/7a6f2c8e28e972cb3255508b935f4cad51c701ec
+, python310
 , gcc-arm-embedded
 
 , glibcLocales
