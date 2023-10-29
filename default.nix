@@ -74,9 +74,6 @@ in pkgsHost.callPackage ({
 , pkg-config
 , which
 , gawk
-# Python 3.11 support needs:
-# https://github.com/ArduPilot/ardupilot/commit/7a6f2c8e28e972cb3255508b935f4cad51c701ec
-, python310
 , gcc-arm-embedded
 
 , glibcLocales
@@ -94,7 +91,9 @@ in pkgsHost.callPackage ({
 
   depsBuildBuild = [ buildPackages.stdenv.cc ];
   nativeBuildInputs = [ pkg-config which gawk git ] ++
-    (with buildPackages.python3.pkgs; [ future pyserial empy pexpect setuptools ]) ++
+    # Python 3.11 support needs:
+    # https://github.com/ArduPilot/ardupilot/commit/7a6f2c8e28e972cb3255508b935f4cad51c701ec
+    (with buildPackages.python310.pkgs; [ future pyserial empy pexpect setuptools ]) ++
     lib.optionals dev [ glibcLocales astyle mavproxy procps gdbHostCpuOnly ];
 
   buildInputs = lib.optional (board == "bebop") ((libiio.override {
