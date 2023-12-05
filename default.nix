@@ -38,8 +38,10 @@ let
       (prev.withCFlags [ "-Os" ])
       # Optimize libstdc++
       (stdenv: prev.overrideCC stdenv (prev.buildPackages.wrapCCWith {
-        cc = prev.buildPackages.gcc-unwrapped.overrideAttrs (oldAttrs: {
-          EXTRA_FLAGS_FOR_TARGET = oldAttrs.EXTRA_FLAGS_FOR_TARGET ++ [ "-Os" ];
+        cc = prev.buildPackages.gcc-unwrapped.overrideAttrs ({ env ? {}, ... }: {
+          env = env // {
+            EXTRA_FLAGS_FOR_TARGET = (env.EXTRA_FLAGS_FOR_TARGET or "") + "-Os";
+          };
         });
       }))
     ];
