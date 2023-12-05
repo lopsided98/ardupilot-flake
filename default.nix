@@ -1,7 +1,6 @@
 { nixpkgs
 , lib
-, pkgs
-, callPackage
+, stdenv
 , git
 
 , src ? null
@@ -21,7 +20,7 @@ let
         tune = "cortex-a9";
       };
     };
-    "sitl" = pkgs.stdenv.hostPlatform;
+    "sitl" = stdenv.hostPlatform;
   }.${board} or {
     config = "arm-none-eabi";
     libc = "newlib-nano";
@@ -61,7 +60,7 @@ let
   };
 
   pkgsHost = nixpkgs {
-    localSystem = pkgs.stdenv.hostPlatform;
+    localSystem = stdenv.hostPlatform;
     crossSystem = hostPlatform;
     overlays = [ optimizeSizeOverlay ] ++
       lib.optional (board == "bebop") bebopMuslIoctlHackOverlay;
