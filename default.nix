@@ -40,7 +40,7 @@ let
       (stdenv: prev.overrideCC stdenv (prev.buildPackages.wrapCCWith {
         cc = prev.buildPackages.gcc-unwrapped.overrideAttrs ({ env ? {}, ... }: {
           env = env // {
-            EXTRA_FLAGS_FOR_TARGET = (env.EXTRA_FLAGS_FOR_TARGET or "") + "-Os";
+            EXTRA_FLAGS_FOR_TARGET = (env.EXTRA_FLAGS_FOR_TARGET or "") + " -Os";
           };
         });
       }))
