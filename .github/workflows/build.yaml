@@ -47,7 +47,7 @@ jobs:
       - run: nix build -L .#${{ matrix.package }}
       - name: Get result Nix store path
         run: echo "result=$(readlink result)" >> $GITHUB_ENV
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.package }}
           path: ${{ env.result }}
