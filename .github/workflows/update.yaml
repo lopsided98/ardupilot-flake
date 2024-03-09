@@ -9,15 +9,13 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           token: ${{ secrets.UPDATE_GITHUB_TOKEN }}
           fetch-depth: 0
-      - uses: cachix/install-nix-action@v22
-        with:
-          github_access_token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: DeterminateSystems/nix-installer-action@v9
       - name: Nix cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ~/.cache/nix/
           key: nix-cache-${{ hashFiles('**/*.nix', 'flake.lock') }}
@@ -26,7 +24,7 @@ jobs:
       - uses: DeterminateSystems/magic-nix-cache-action@main
         with:
           # Custom binary that allows uploading sources
-          # Built from: https://github.com/lopsided98/magic-nix-cache/commit/7d993eaabcbbdc1ef26aec52133ee19ef8ac29a9
+          # Built from: https://github.com/lopsided98/magic-nix-cache/commit/7337f0abbabe9cb4403cb53695c33e3a371d9cf1
           source-url: https://files.benwolsieffer.com/Projects/magic-nix-cache/magic-nix-cache.nar.xz
           diagnostic-endpoint: ""
       - name: Configure git user
