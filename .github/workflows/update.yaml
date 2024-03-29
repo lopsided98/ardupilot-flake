@@ -13,8 +13,10 @@ jobs:
         with:
           token: ${{ secrets.UPDATE_GITHUB_TOKEN }}
           fetch-depth: 0
-      - uses: DeterminateSystems/nix-installer-action@v9
+      - uses: DeterminateSystems/nix-installer-action@v10
         with:
+          # Use Nix 2.19.3 due to https://github.com/NixOS/nix/issues/10022
+          nix-installer-tag: v0.16.1
           diagnostic-endpoint: ""
       - name: Nix cache
         uses: actions/cache@v4
