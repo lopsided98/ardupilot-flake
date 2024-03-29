@@ -16,19 +16,19 @@ jobs:
       - uses: DeterminateSystems/nix-installer-action@v9
         with:
           diagnostic-endpoint: ""
-      - name: Nix cache
-        uses: actions/cache@v4
-        with:
-          path: ~/.cache/nix/
-          key: nix-cache-${{ hashFiles('**/*.nix', 'flake.lock') }}
-          restore-keys: |
-            nix-cache-
-      - uses: DeterminateSystems/magic-nix-cache-action@v3
-        with:
-          # Custom binary that allows uploading sources
-          # Built from: https://github.com/lopsided98/magic-nix-cache/commit/7337f0abbabe9cb4403cb53695c33e3a371d9cf1
-          source-url: https://files.benwolsieffer.com/Projects/magic-nix-cache/magic-nix-cache
-          diagnostic-endpoint: ""
+#      - name: Nix cache
+#        uses: actions/cache@v4
+#        with:
+#          path: ~/.cache/nix/
+#          key: nix-cache-${{ hashFiles('**/*.nix', 'flake.lock') }}
+#          restore-keys: |
+#            nix-cache-
+#      - uses: DeterminateSystems/magic-nix-cache-action@v3
+#        with:
+#          # Custom binary that allows uploading sources
+#          # Built from: https://github.com/lopsided98/magic-nix-cache/commit/7337f0abbabe9cb4403cb53695c33e3a371d9cf1
+#          source-url: https://files.benwolsieffer.com/Projects/magic-nix-cache/magic-nix-cache
+#          diagnostic-endpoint: ""
       - name: Configure git user
         run: |
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
