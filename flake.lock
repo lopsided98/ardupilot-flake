@@ -22,11 +22,11 @@
     "arducopter-beta": {
       "flake": false,
       "locked": {
-        "lastModified": 1715821239,
-        "narHash": "sha256-igD+AuquEt/lR9r3edIwpcBiR7xreZU0mLC5nEA5NV4=",
+        "lastModified": 1716869035,
+        "narHash": "sha256-b7qAHWw2ves7WcVloIJa/24eEHHra3pnVgNK0ZQyZj0=",
         "ref": "refs/tags/ArduCopter-beta",
-        "rev": "a6ce5e305da8d2b5e2f64733963e27c39b82068c",
-        "revCount": 62127,
+        "rev": "ee14ff3822161368ec403700bf96d02b84def06c",
+        "revCount": 62137,
         "submodules": true,
         "type": "git",
         "url": "https://github.com/ArduPilot/ardupilot"
@@ -41,11 +41,11 @@
     "arducopter-stable": {
       "flake": false,
       "locked": {
-        "lastModified": 1715649349,
-        "narHash": "sha256-P9X8u6uc7ynaPAfG/S0Ror43lUV3vcZCLOuWT2/kQjk=",
+        "lastModified": 1716869035,
+        "narHash": "sha256-b7qAHWw2ves7WcVloIJa/24eEHHra3pnVgNK0ZQyZj0=",
         "ref": "refs/tags/ArduCopter-stable",
-        "rev": "291be84828041815142e31374de15ba5bcf1bba0",
-        "revCount": 62099,
+        "rev": "ee14ff3822161368ec403700bf96d02b84def06c",
+        "revCount": 62137,
         "submodules": true,
         "type": "git",
         "url": "https://github.com/ArduPilot/ardupilot"
@@ -60,11 +60,11 @@
     "arduplane-beta": {
       "flake": false,
       "locked": {
-        "lastModified": 1715821106,
-        "narHash": "sha256-cLScFj9nIc3NZjrn9aP2y2fz8Kn0PSGKHGi4NrcQ0JY=",
+        "lastModified": 1716869126,
+        "narHash": "sha256-+4UAxYeesW8mopGw7ZU44bxeBtZkq/ks6E1vfNRrDPM=",
         "ref": "refs/tags/ArduPlane-beta",
-        "rev": "a60347cd7cd92fc6e35529ef8eabc2efcab402f0",
-        "revCount": 62124,
+        "rev": "6cedbcb0e5fc14a99742a50a37117ac537be4fe8",
+        "revCount": 62136,
         "submodules": true,
         "type": "git",
         "url": "https://github.com/ArduPilot/ardupilot"
@@ -98,11 +98,11 @@
     "arduplane-stable": {
       "flake": false,
       "locked": {
-        "lastModified": 1715649359,
-        "narHash": "sha256-mj2oyUMxiqIJvms01FIa+JNsZGuHCBCrUgzm8MKXcKI=",
+        "lastModified": 1716869126,
+        "narHash": "sha256-+4UAxYeesW8mopGw7ZU44bxeBtZkq/ks6E1vfNRrDPM=",
         "ref": "refs/tags/ArduPlane-stable",
-        "rev": "4327a381d033819b6483e7476bb332d6821ebd30",
-        "revCount": 62098,
+        "rev": "6cedbcb0e5fc14a99742a50a37117ac537be4fe8",
+        "revCount": 62136,
         "submodules": true,
         "type": "git",
         "url": "https://github.com/ArduPilot/ardupilot"
