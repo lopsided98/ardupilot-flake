@@ -3,11 +3,11 @@
     "arducopter-bebop": {
       "flake": false,
       "locked": {
-        "lastModified": 1695590313,
-        "narHash": "sha256-LP8tMPr+dBLIwbjBnrSk23kpWlYLTczx3wi4NU6rhvk=",
+        "lastModified": 1721533855,
+        "narHash": "sha256-F/9p5e3FpeOhCXDeat1yV2FBS3Dd9KOFPoZwGeCFcP4=",
         "ref": "refs/heads/parrot-bebop",
-        "rev": "f498c0abc2468495c022085c79e461d75a5e2f9d",
-        "revCount": 57284,
+        "rev": "5797afcc9a1ba41ab0021335c9adf05909e0fde4",
+        "revCount": 62155,
         "submodules": true,
         "type": "git",
         "url": "https://github.com/lopsided98/ardupilot"
@@ -134,11 +134,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1721403608,
-        "narHash": "sha256-X5+QA5K3J2KA20YEaBJ+GKDj/XIb5PutHmphgYQUszA=",
+        "lastModified": 1721466660,
+        "narHash": "sha256-pFSxgSZqZ3h+5Du0KvEL1ccDZBwu4zvOil1zzrPNb3c=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "ad0111043c09f7d0f6b9f039882cbf350d4f7d49",
+        "rev": "6e14bbce7bea6c4efd7adfa88a40dac750d80100",
         "type": "github"
       },
       "original": {
