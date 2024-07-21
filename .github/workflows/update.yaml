@@ -13,7 +13,7 @@ jobs:
         with:
           token: ${{ secrets.UPDATE_GITHUB_TOKEN }}
           fetch-depth: 0
-      - uses: DeterminateSystems/nix-installer-action@v10
+      - uses: DeterminateSystems/nix-installer-action@v12
         with:
           # Use Nix 2.19.3 due to https://github.com/NixOS/nix/issues/10022
           nix-installer-tag: v0.16.1
@@ -25,7 +25,7 @@ jobs:
           key: nix-cache-${{ hashFiles('**/*.nix', 'flake.lock') }}
           restore-keys: |
             nix-cache-
-      - uses: DeterminateSystems/magic-nix-cache-action@v3
+      - uses: DeterminateSystems/magic-nix-cache-action@v7
         with:
           # Custom binary that allows uploading sources
           # Built from: https://github.com/lopsided98/magic-nix-cache/commit/7337f0abbabe9cb4403cb53695c33e3a371d9cf1
