@@ -30,6 +30,24 @@ let
     };
   };
 
+  empyOverlay = final: prev: {
+    pythonPackagesExtensions = prev.pythonPackagesExtensions ++ [
+      (pyFinal: pyPrev: {
+        # ArduPilot is incompatible with Empy 4
+        # em.ParseError: unknown markup sequence: `@)`; the `@)` markup has been removed, just use `)` instead
+        empy_3 = pyPrev.empy.overrideAttrs ({
+          pname, ...
+        }: rec {
+          version = "3.3.4";
+          src = pyFinal.fetchPypi {
+            inherit pname version;
+            hash = "sha256-c6xJeFtgFHnfTqGKfHm8EwSop8NMArlHLPEgauiPAbM=";
+          };
+        });
+      })
+    ];
+  };
+
   # Optimize for size on bare metal platforms. This makes the build small
   # enough to fit ArduPilot on 1 MiB processors.
   optimizeSizeOverlay = final: prev: lib.optionalAttrs prev.stdenv.hostPlatform.isNone {
@@ -64,7 +82,7 @@ let
   pkgsHost = nixpkgs {
     localSystem = stdenv.hostPlatform;
     crossSystem = hostPlatform;
-    overlays = [ optimizeSizeOverlay ] ++
+    overlays = [ empyOverlay optimizeSizeOverlay ] ++
       lib.optional (board == "bebop") bebopMuslIoctlHackOverlay;
   };
 in pkgsHost.callPackage ({
@@ -92,9 +110,7 @@ in pkgsHost.callPackage ({
 
   depsBuildBuild = [ buildPackages.stdenv.cc ];
   nativeBuildInputs = [ pkg-config which gawk git ] ++
-    # Python 3.11 support needs:
-    # https://github.com/ArduPilot/ardupilot/commit/7a6f2c8e28e972cb3255508b935f4cad51c701ec
-    (with buildPackages.python310.pkgs; [ future pyserial empy pexpect setuptools ]) ++
+    (with buildPackages.python3.pkgs; [ future pyserial empy_3 pexpect setuptools ]) ++
     lib.optionals dev [ glibcLocales astyle mavproxy procps gdbHostCpuOnly ];
 
   buildInputs = lib.optional (board == "bebop") ((libiio.override {
