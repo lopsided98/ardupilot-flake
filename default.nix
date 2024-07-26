@@ -91,15 +91,16 @@ in pkgsHost.callPackage ({
 , pkgsBuildBuild
 , buildPackages
 
+, glibcLocales
+, astyle
+, procps
+, mavproxy
+
 , pkg-config
 , which
 , gawk
-, gcc-arm-embedded
 
-, glibcLocales
-, astyle
-, mavproxy
-, procps
+, llvmPackages_latest
 , gdbHostCpuOnly
 
 , libiio
@@ -114,7 +115,7 @@ in pkgsHost.callPackage ({
   nativeBuildInputs = [ pkg-config which gawk git ] ++
     # waf depends on imp, which was removed in 3.12
     (with buildPackages.python311.pkgs; [ future pyserial empy_3 pexpect setuptools ]) ++
-    lib.optionals dev [ gdbHostCpuOnly ];
+    lib.optionals dev [ llvmPackages_latest.clang-tools gdbHostCpuOnly ];
 
   buildInputs = lib.optional (board == "bebop") ((libiio.override {
     avahiSupport = false;
