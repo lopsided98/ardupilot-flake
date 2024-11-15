@@ -60,11 +60,11 @@
     "arduplane-beta": {
       "flake": false,
       "locked": {
-        "lastModified": 1730024369,
-        "narHash": "sha256-9Nn5P7ivPUWvpHQ1y6lP9SRlVW/hsFLq4hE1Y/Cwgjw=",
+        "lastModified": 1731535365,
+        "narHash": "sha256-FlFkjiMG2iTV7k5AzvYzSM3P07lsNnK92x/z8Bnugr0=",
         "ref": "refs/tags/ArduPlane-beta",
-        "rev": "a6f00a34b118ffa13ab1e36901c1e2d5c9000e74",
-        "revCount": 65281,
+        "rev": "8d4976cd6011610e6d0c08a81ed61226f9a895eb",
+        "revCount": 65321,
         "submodules": true,
         "type": "git",
         "url": "https://github.com/ArduPilot/ardupilot"
