@@ -22,11 +22,11 @@
     "arducopter-beta": {
       "flake": false,
       "locked": {
-        "lastModified": 1739791661,
-        "narHash": "sha256-eemB09HzSmQtqbLf4pweeNhrGAqJTTAKg0GMn65v9M0=",
+        "lastModified": 1743494823,
+        "narHash": "sha256-t1OE9q1Tv8v9aUwX0z3aRvT/JPdO5fNaAqhbs3xKYx8=",
         "ref": "refs/tags/ArduCopter-beta",
-        "rev": "dbb9b75f9b404230380004a0206ab800c4a6147b",
-        "revCount": 65546,
+        "rev": "b136aa2b6daab5384c35325deb5adff8ca37b90f",
+        "revCount": 65649,
         "submodules": true,
         "type": "git",
         "url": "https://github.com/ArduPilot/ardupilot"
@@ -60,11 +60,11 @@
     "arduplane-beta": {
       "flake": false,
       "locked": {
-        "lastModified": 1739791661,
-        "narHash": "sha256-eemB09HzSmQtqbLf4pweeNhrGAqJTTAKg0GMn65v9M0=",
+        "lastModified": 1743494823,
+        "narHash": "sha256-t1OE9q1Tv8v9aUwX0z3aRvT/JPdO5fNaAqhbs3xKYx8=",
         "ref": "refs/tags/ArduPlane-beta",
-        "rev": "dbb9b75f9b404230380004a0206ab800c4a6147b",
-        "revCount": 65546,
+        "rev": "b136aa2b6daab5384c35325deb5adff8ca37b90f",
+        "revCount": 65649,
         "submodules": true,
         "type": "git",
         "url": "https://github.com/ArduPilot/ardupilot"
@@ -134,11 +134,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1743472173,
-        "narHash": "sha256-xwNv3FYTC5pl4QVZ79gUxqCEvqKzcKdXycpH5UbYscw=",
+        "lastModified": 1743538100,
+        "narHash": "sha256-Bl/ynRPIb4CdtbEw3gfJYpKiHmRmrKltXc8zipqpO0o=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "88e992074d86ad50249de12b7fb8dbaadf8dc0c5",
+        "rev": "b9d43b3fe5152d1dc5783a2ba865b2a03388b741",
         "type": "github"
       },
       "original": {
