@@ -6,13 +6,11 @@ jobs:
   packages:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
         with:
           fetch-depth: 0
-      - uses: DeterminateSystems/nix-installer-action@v12
-        with:
-          diagnostic-endpoint: ""
-      - uses: DeterminateSystems/magic-nix-cache-action@v7
+      - uses: cachix/install-nix-action@4e002c8ec80594ecd40e759629461e26c8abed15 # v31.9.0
+      - uses: DeterminateSystems/magic-nix-cache-action@565684385bcd71bad329742eefe8d12f2e765b39 # v13
         with:
           diagnostic-endpoint: ""
       - name: Get packages from flake
@@ -21,7 +19,7 @@ jobs:
           echo -n "packages=" >> "$GITHUB_OUTPUT"
           nix flake show --json | \
             jq -c ".packages.\"x86_64-linux\" | keys" >> "$GITHUB_OUTPUT"
-    outputs:  
+    outputs:
       packages: ${{steps.packages.outputs.packages}}
 
   build:
@@ -33,13 +31,11 @@ jobs:
       matrix:
         package: ${{ fromJSON(needs.packages.outputs.packages) }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
         with:
           fetch-depth: 0
-      - uses: DeterminateSystems/nix-installer-action@v12
-        with:
-          diagnostic-endpoint: ""
-      - uses: DeterminateSystems/magic-nix-cache-action@v7
+      - uses: cachix/install-nix-action@4e002c8ec80594ecd40e759629461e26c8abed15 # v31.9.0
+      - uses: DeterminateSystems/magic-nix-cache-action@565684385bcd71bad329742eefe8d12f2e765b39 # v13
         with:
           diagnostic-endpoint: ""
       - run: nix build -L .#${{ matrix.package }}

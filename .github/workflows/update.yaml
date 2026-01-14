@@ -9,21 +9,19 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
         with:
           token: ${{ secrets.UPDATE_GITHUB_TOKEN }}
           fetch-depth: 0
-      - uses: DeterminateSystems/nix-installer-action@v12
-        with:
-          diagnostic-endpoint: ""
+      - uses: cachix/install-nix-action@4e002c8ec80594ecd40e759629461e26c8abed15 # v31.9.0
       - name: Nix cache
-        uses: actions/cache@v4
+        uses: actions/cache@9255dc7a253b0ccc959486e2bca901246202afeb # v5.0.1
         with:
           path: ~/.cache/nix/
           key: nix-cache-${{ hashFiles('**/*.nix', 'flake.lock') }}
           restore-keys: |
             nix-cache-
-      - uses: DeterminateSystems/magic-nix-cache-action@v7
+      - uses: DeterminateSystems/magic-nix-cache-action@565684385bcd71bad329742eefe8d12f2e765b39 # v13
         with:
           diagnostic-endpoint: ""
       - name: Configure git user
