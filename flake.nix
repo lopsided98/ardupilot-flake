@@ -32,13 +32,6 @@
       flake = false;
       submodules = true;
     };
-    arduplane-masters-thesis = {
-      type = "git";
-      url = "https://github.com/lopsided98/ardupilot";
-      ref = "refs/heads/masters-thesis";
-      flake = false;
-      submodules = true;
-    };
     arducopter-bebop = {
       type = "git";
       url = "https://github.com/lopsided98/ardupilot";
@@ -98,11 +91,6 @@
         };
         plane-beta-matekh743 = {
           src = inputs.arduplane-beta;
-          firmware = "plane";
-          board = "MatekH743";
-        };
-        plane-masters-thesis-matekh743 = {
-          src = inputs.arduplane-masters-thesis;
           firmware = "plane";
           board = "MatekH743";
         };
