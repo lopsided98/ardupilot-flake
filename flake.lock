@@ -22,11 +22,11 @@
     "arducopter-beta": {
       "flake": false,
       "locked": {
-        "lastModified": 1778888877,
-        "narHash": "sha256-0bW5P4dEtgjTyP5vIXno0Cf+73w7hf6A3/JO7M+eKWg=",
+        "lastModified": 1780640426,
+        "narHash": "sha256-Hqj7jnrKeAnqUaS2EMPH/Ps1at/G2TRAij51Hc71JG0=",
         "ref": "refs/tags/ArduCopter-beta",
-        "rev": "9fe25aba274d6db889edfe40edbba2474595f2df",
-        "revCount": 71430,
+        "rev": "72263d59f0f5c47f057546700d330659e34b03d6",
+        "revCount": 71521,
         "submodules": true,
         "type": "git",
         "url": "https://github.com/ArduPilot/ardupilot"
@@ -60,11 +60,11 @@
     "arduplane-beta": {
       "flake": false,
       "locked": {
-        "lastModified": 1778888877,
-        "narHash": "sha256-0bW5P4dEtgjTyP5vIXno0Cf+73w7hf6A3/JO7M+eKWg=",
+        "lastModified": 1780640426,
+        "narHash": "sha256-Hqj7jnrKeAnqUaS2EMPH/Ps1at/G2TRAij51Hc71JG0=",
         "ref": "refs/tags/ArduPlane-beta",
-        "rev": "9fe25aba274d6db889edfe40edbba2474595f2df",
-        "revCount": 71430,
+        "rev": "72263d59f0f5c47f057546700d330659e34b03d6",
+        "revCount": 71521,
         "submodules": true,
         "type": "git",
         "url": "https://github.com/ArduPilot/ardupilot"
