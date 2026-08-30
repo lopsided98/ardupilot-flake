@@ -113,8 +113,7 @@ in pkgsHost.callPackage ({
   depsBuildBuild = [ pkgsBuildBuild.stdenv.cc ] ++
     lib.optionals dev [ glibcLocales astyle procps /* mavproxy */ ];
   nativeBuildInputs = [ pkg-config which gawk git ] ++
-    # waf depends on imp, which was removed in 3.12
-    (with buildPackages.python311.pkgs; [ future pyserial empy_3 pexpect setuptools ]) ++
+    (with buildPackages.python3.pkgs; [ pyserial empy_3 pexpect setuptools ]) ++
     lib.optionals dev [ llvmPackages_latest.clang-tools gdbHostCpuOnly ];
 
   buildInputs = lib.optional (board == "bebop") ((libiio.override {
