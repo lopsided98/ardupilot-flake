@@ -137,6 +137,10 @@ in pkgsHost.callPackage ({
     patchShebangs waf
   '';
 
+  # Disable hardening for bare metal builds as it increases the binary size and
+  # can exceed the available flash space.
+  hardeningDisable = lib.optional stdenv.hostPlatform.isNone "all";
+
   separateDebugInfo = true;
 
   # No point in stripping bare metal platforms because we don't actually
