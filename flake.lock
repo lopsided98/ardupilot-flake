@@ -3,10 +3,10 @@
     "arducopter-bebop": {
       "flake": false,
       "locked": {
-        "lastModified": 1788130551,
-        "narHash": "sha256-paqF2T4SmNNFhvtscZ8LahZOvBb4J63LWXk1DFYTfMk=",
+        "lastModified": 1788620544,
+        "narHash": "sha256-LJpYJqH6X/d43FrzBEQYTmqmeYPlD0MXfxBHgv0Bt/A=",
         "ref": "refs/heads/parrot-bebop",
-        "rev": "1b62887b1b18600487dd9f1233b40154d876eb31",
+        "rev": "2ce1993ad4b183ed600a36cdc721331857d2f9bc",
         "revCount": 71622,
         "submodules": true,
         "type": "git",
